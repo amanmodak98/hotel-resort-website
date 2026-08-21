@@ -207,6 +207,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between text-sm text-[#faf7f0]/60 space-y-4 md:space-y-0">
           <p>© 2026 The Grand Meridian. All rights reserved.</p>
+          <p>Designed &amp; Developed by <a href="https://www.infirexa.tech" target="_blank" rel="noopener noreferrer">Infirexa</a></p>
           <div className="flex items-center space-x-6">
             <Link
               to="/privacy"

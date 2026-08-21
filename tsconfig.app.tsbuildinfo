@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/layout/footer.tsx","./src/components/layout/layout.tsx","./src/components/layout/navbar.tsx","./src/pages/amenitiespage.tsx","./src/pages/bookpage.tsx","./src/pages/contactpage.tsx","./src/pages/diningpage.tsx","./src/pages/gallerypage.tsx","./src/pages/homepage.tsx","./src/pages/roomspage.tsx"],"version":"5.9.3"}
