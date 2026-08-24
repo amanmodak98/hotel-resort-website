@@ -727,7 +727,7 @@ export default function DiningPage() {
                         value={formData.name}
                         onChange={handleFormChange}
                         required
-                        className="w-full bg-surface border border-gold/20 rounded-lg px-4 py-3 text-ivory placeholder-muted focus:outline-none focus:border-gold transition-colors duration-300"
+                        className="w-full bg-surface border border-gold/20 rounded-lg px-4 py-3 text-ivory placeholder:text-muted focus:outline-none focus:border-gold transition-colors duration-300"
                         placeholder="Your name"
                       />
                     </div>
@@ -741,7 +741,7 @@ export default function DiningPage() {
                         value={formData.email}
                         onChange={handleFormChange}
                         required
-                        className="w-full bg-surface border border-gold/20 rounded-lg px-4 py-3 text-ivory placeholder-muted focus:outline-none focus:border-gold transition-colors duration-300"
+                        className="w-full bg-surface border border-gold/20 rounded-lg px-4 py-3 text-ivory placeholder:text-muted focus:outline-none focus:border-gold transition-colors duration-300"
                         placeholder="you@example.com"
                       />
                     </div>
@@ -754,7 +754,7 @@ export default function DiningPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleFormChange}
-                        className="w-full bg-surface border border-gold/20 rounded-lg px-4 py-3 text-ivory placeholder-muted focus:outline-none focus:border-gold transition-colors duration-300"
+                        className="w-full bg-surface border border-gold/20 rounded-lg px-4 py-3 text-ivory placeholder:text-muted focus:outline-none focus:border-gold transition-colors duration-300"
                         placeholder="+1 000 000 0000"
                       />
                     </div>
@@ -770,7 +770,7 @@ export default function DiningPage() {
                         min={1}
                         max={20}
                         required
-                        className="w-full bg-surface border border-gold/20 rounded-lg px-4 py-3 text-ivory placeholder-muted focus:outline-none focus:border-gold transition-colors duration-300"
+                        className="w-full bg-surface border border-gold/20 rounded-lg px-4 py-3 text-ivory placeholder:text-muted focus:outline-none focus:border-gold transition-colors duration-300"
                       />
                     </div>
                     <div>
@@ -829,7 +829,7 @@ export default function DiningPage() {
                       value={formData.specialRequests}
                       onChange={handleFormChange}
                       rows={4}
-                      className="w-full bg-surface border border-gold/20 rounded-lg px-4 py-3 text-ivory placeholder-muted focus:outline-none focus:border-gold transition-colors duration-300 resize-none"
+                      className="w-full bg-surface border border-gold/20 rounded-lg px-4 py-3 text-ivory placeholder:text-muted focus:outline-none focus:border-gold transition-colors duration-300 resize-none"
                       placeholder="Dietary requirements, room preferences, decorations..."
                     />
                   </div>

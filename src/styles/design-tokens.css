@@ -1,0 +1,360 @@
+/**
+ * Design Tokens - The Grand Meridian
+ *
+ * Comprehensive design system tokens for typography, spacing, colors,
+ * shadows, borders, and animations. These tokens ensure consistency
+ * across the entire application.
+ */
+
+@layer base {
+  :root {
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+
+    /* Font Families */
+    --font-display: "Playfair Display", "Libre Baskerville", Georgia, serif;
+    --font-serif: "Libre Baskerville", Georgia, serif;
+    --font-sans: "Inter", "Lato", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", "Courier New", monospace;
+
+    /* Type Scale (Perfect Fourth - 1.333 ratio for luxury hierarchy) */
+    --text-xs: 0.75rem;      /* 12px */
+    --text-sm: 0.875rem;     /* 14px */
+    --text-base: 1rem;       /* 16px */
+    --text-lg: 1.125rem;     /* 18px */
+    --text-xl: 1.333rem;     /* 21.33px */
+    --text-2xl: 1.777rem;    /* 28.43px */
+    --text-3xl: 2.369rem;    /* 37.90px */
+    --text-4xl: 3.157rem;    /* 50.51px */
+    --text-5xl: 4.209rem;    /* 67.34px */
+    --text-6xl: 5.610rem;    /* 89.76px */
+    --text-7xl: 7.478rem;    /* 119.65px - for hero statements */
+
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+
+    /* Font Weights */
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-black: 900;
+
+    /* Letter Spacing */
+    --tracking-tighter: -0.05em;
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+    --tracking-luxury: 0.2em;
+
+    /* ========================================
+       SPACING (8px base unit)
+       ======================================== */
+
+    --space-0: 0;
+    --space-px: 1px;
+    --space-0-5: 0.125rem;   /* 2px */
+    --space-1: 0.25rem;      /* 4px */
+    --space-1-5: 0.375rem;   /* 6px */
+    --space-2: 0.5rem;       /* 8px */
+    --space-2-5: 0.625rem;   /* 10px */
+    --space-3: 0.75rem;      /* 12px */
+    --space-3-5: 0.875rem;   /* 14px */
+    --space-4: 1rem;         /* 16px */
+    --space-5: 1.25rem;      /* 20px */
+    --space-6: 1.5rem;       /* 24px */
+    --space-7: 1.75rem;      /* 28px */
+    --space-8: 2rem;         /* 32px */
+    --space-9: 2.25rem;      /* 36px */
+    --space-10: 2.5rem;      /* 40px */
+    --space-11: 2.75rem;     /* 44px */
+    --space-12: 3rem;        /* 48px */
+    --space-14: 3.5rem;      /* 56px */
+    --space-16: 4rem;        /* 64px */
+    --space-18: 4.5rem;      /* 72px */
+    --space-20: 5rem;        /* 80px */
+    --space-24: 6rem;        /* 96px */
+    --space-28: 7rem;        /* 112px */
+    --space-32: 8rem;        /* 128px */
+    --space-36: 9rem;        /* 144px */
+    --space-40: 10rem;       /* 160px */
+    --space-44: 11rem;       /* 176px */
+    --space-48: 12rem;       /* 192px */
+    --space-52: 13rem;       /* 208px */
+    --space-56: 14rem;       /* 224px */
+    --space-60: 15rem;       /* 240px */
+    --space-64: 16rem;       /* 256px */
+    --space-72: 18rem;       /* 288px */
+    --space-80: 20rem;       /* 320px */
+    --space-96: 24rem;       /* 384px */
+
+    /* ========================================
+       COLORS
+       ======================================== */
+
+    /* Brand - Gold Palette */
+    --color-gold-50: #faf7f0;
+    --color-gold-100: #f5ede0;
+    --color-gold-200: #e8d5a3;
+    --color-gold-300: #dbc786;
+    --color-gold-400: #c8a96e;
+    --color-gold-500: #b5925a;
+    --color-gold-600: #9a7a4a;
+    --color-gold-700: #7d6239;
+    --color-gold-800: #614b2b;
+    --color-gold-900: #4a391f;
+
+    /* Brand - Navy Palette */
+    --color-navy-50: #e8edf5;
+    --color-navy-100: #d1dbe8;
+    --color-navy-200: #a3b7d1;
+    --color-navy-300: #7593ba;
+    --color-navy-400: #476fa3;
+    --color-navy-500: #324b6d;
+    --color-navy-600: #1f3247;
+    --color-navy-700: #162540;
+    --color-navy-800: #111f35;
+    --color-navy-900: #0a1628;
+
+    /* Neutral - Ivory/Muted */
+    --color-ivory-50: #ffffff;
+    --color-ivory-100: #fefefe;
+    --color-ivory-200: #faf7f0;
+    --color-ivory-300: #f5f1e8;
+    --color-ivory-400: #e8e2d5;
+    --color-ivory-500: #d4cbb8;
+    --color-ivory-600: #b8ab93;
+    --color-ivory-700: #8b8070;
+    --color-ivory-800: #6b6258;
+    --color-ivory-900: #4a453d;
+
+    /* Semantic Colors */
+    --color-success-light: #d1fae5;
+    --color-success: #10b981;
+    --color-success-dark: #047857;
+
+    --color-warning-light: #fef3c7;
+    --color-warning: #f59e0b;
+    --color-warning-dark: #d97706;
+
+    --color-error-light: #fee2e2;
+    --color-error: #ef4444;
+    --color-error-dark: #dc2626;
+
+    --color-info-light: #dbeafe;
+    --color-info: #3b82f6;
+    --color-info-dark: #2563eb;
+
+    /* Legacy Color Mappings (for backwards compatibility) */
+    --color-gold: var(--color-gold-400);
+    --color-gold-light: var(--color-gold-200);
+    --color-navy: var(--color-navy-900);
+    --color-surface: var(--color-navy-800);
+    --color-card: var(--color-navy-700);
+    --color-ivory: var(--color-ivory-200);
+    --color-muted: var(--color-ivory-700);
+
+    /* ========================================
+       ELEVATION & SHADOWS
+       ======================================== */
+
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+    /* Colored Shadows */
+    --shadow-gold-sm: 0 0 10px rgba(200, 169, 110, 0.15);
+    --shadow-gold-md: 0 0 20px rgba(200, 169, 110, 0.2);
+    --shadow-gold-lg: 0 0 30px rgba(200, 169, 110, 0.25);
+    --shadow-gold-xl: 0 0 40px rgba(200, 169, 110, 0.3);
+
+    /* ========================================
+       BORDER RADIUS
+       ======================================== */
+
+    --radius-none: 0;
+    --radius-sm: 0.125rem;     /* 2px */
+    --radius-base: 0.25rem;    /* 4px */
+    --radius-md: 0.375rem;     /* 6px */
+    --radius-lg: 0.5rem;       /* 8px */
+    --radius-xl: 0.75rem;      /* 12px */
+    --radius-2xl: 1rem;        /* 16px */
+    --radius-3xl: 1.5rem;      /* 24px */
+    --radius-full: 9999px;
+
+    /* ========================================
+       TRANSITIONS & ANIMATIONS
+       ======================================== */
+
+    /* Duration */
+    --duration-instant: 0ms;
+    --duration-fast: 150ms;
+    --duration-base: 300ms;
+    --duration-slow: 500ms;
+    --duration-slower: 700ms;
+    --duration-slowest: 1000ms;
+
+    /* Easing Functions */
+    --ease-linear: linear;
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-luxury: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* ========================================
+       BREAKPOINTS (for reference in JS)
+       ======================================== */
+
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+
+    /* ========================================
+       Z-INDEX SCALE
+       ======================================== */
+
+    --z-base: 0;
+    --z-dropdown: 10;
+    --z-sticky: 20;
+    --z-fixed: 30;
+    --z-modal-backdrop: 40;
+    --z-modal: 50;
+    --z-popover: 60;
+    --z-tooltip: 70;
+
+    /* ========================================
+       LAYOUT
+       ======================================== */
+
+    --container-max-width: 1280px;
+    --container-padding: var(--space-6);
+
+    /* Content widths */
+    --width-prose: 65ch;
+    --width-narrow: 45rem;
+    --width-normal: 65rem;
+    --width-wide: 80rem;
+
+    /* ========================================
+       BORDERS
+       ======================================== */
+
+    --border-width-thin: 1px;
+    --border-width-base: 2px;
+    --border-width-thick: 4px;
+
+    /* ========================================
+       FOCUS STYLES
+       ======================================== */
+
+    --focus-ring-width: 2px;
+    --focus-ring-offset: 2px;
+    --focus-ring-color: var(--color-gold-400);
+    --focus-ring: 0 0 0 var(--focus-ring-offset) var(--color-navy-900),
+                  0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color);
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+@layer utilities {
+  /* Focus Ring */
+  .focus-ring {
+    outline: none;
+  }
+
+  .focus-ring:focus-visible {
+    box-shadow: var(--focus-ring);
+  }
+
+  /* Fluid Typography */
+  .text-fluid-xs {
+    font-size: clamp(0.64rem, 0.6rem + 0.2vw, 0.72rem);
+  }
+
+  .text-fluid-sm {
+    font-size: clamp(0.8rem, 0.76rem + 0.2vw, 0.9rem);
+  }
+
+  .text-fluid-base {
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  }
+
+  .text-fluid-lg {
+    font-size: clamp(1.25rem, 1.18rem + 0.35vw, 1.406rem);
+  }
+
+  .text-fluid-xl {
+    font-size: clamp(1.563rem, 1.476rem + 0.435vw, 1.758rem);
+  }
+
+  .text-fluid-2xl {
+    font-size: clamp(1.953rem, 1.845rem + 0.54vw, 2.197rem);
+  }
+
+  .text-fluid-3xl {
+    font-size: clamp(2.441rem, 2.306rem + 0.675vw, 2.747rem);
+  }
+
+  .text-fluid-4xl {
+    font-size: clamp(3.052rem, 2.883rem + 0.845vw, 3.433rem);
+  }
+
+  .text-fluid-5xl {
+    font-size: clamp(3.815rem, 3.604rem + 1.055vw, 4.291rem);
+  }
+
+  .text-fluid-6xl {
+    font-size: clamp(4.768rem, 4.505rem + 1.315vw, 5.364rem);
+  }
+
+  .text-fluid-7xl {
+    font-size: clamp(5.610rem, 5.2rem + 2.05vw, 7.478rem);
+  }
+
+  /* Text Shadows for Luxury Feel */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-shadow-gold {
+    text-shadow: 0 0 20px rgba(200, 169, 110, 0.5);
+  }
+
+  /* Smooth Scrolling */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  /* Backdrop Blur */
+  .backdrop-blur-luxury {
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+  }
+}
