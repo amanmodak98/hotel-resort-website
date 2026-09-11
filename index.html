@@ -2,12 +2,102 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Grand Meridian — Luxury Resort</title>
+
+    <title>The Grand Meridian — luxury hospitality hotel resort</title>
+    <meta
+      name="description"
+      content="The Grand Meridian is a five-star coastal sanctuary where timeless luxury meets contemporary refinement. Discover sumptuous rooms, Michelin-caliber dining, a holistic spa, and curated experiences on the Mediterranean."
+    />
+    <meta name="author" content="The Grand Meridian" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#1a3a5c" />
+    <meta name="color-scheme" content="light dark" />
+
+    <link rel="canonical" href="https://grandmeridian.example.com/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link
+      rel="preconnect"
+      href="https://images.unsplash.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&family=Fraunces:ital,wght@0,300..700;1,300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="The Grand Meridian" />
+    <meta property="og:title" content="The Grand Meridian — luxury hospitality hotel resort" />
+    <meta
+      property="og:description"
+      content="A five-star coastal sanctuary where timeless luxury meets contemporary refinement. Discover sumptuous rooms, Michelin-caliber dining, a holistic spa and curated Mediterranean experiences."
+    />
+    <meta property="og:url" content="https://grandmeridian.example.com/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=85" />
+    <meta property="og:image:secure_url" content="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=85" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="1067" />
+    <meta property="og:image:alt" content="The Grand Meridian resort exterior at twilight" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Grand Meridian — luxury hospitality hotel resort" />
+    <meta
+      name="twitter:description"
+      content="A five-star coastal sanctuary where timeless luxury meets contemporary refinement."
+    />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=85" />
+    <meta name="twitter:image:alt" content="The Grand Meridian resort exterior at twilight" />
+
+    <!-- Structured Data: LodgingBusiness -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LodgingBusiness",
+        "name": "The Grand Meridian",
+        "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=85",
+        "url": "https://grandmeridian.example.com/",
+        "telephone": "+1-800-555-GRAND",
+        "priceRange": "$$$$",
+        "description": "A five-star coastal sanctuary offering sumptuous rooms, Michelin-caliber dining, a holistic spa, and curated Mediterranean experiences.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1 Ocean Boulevard",
+          "addressLocality": "North Malé Atoll",
+          "postalCode": "20056",
+          "addressCountry": "MV"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 4.1755,
+          "longitude": 73.5093
+        },
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Infinity Pool", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Spa", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Free Wi-Fi", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Fine Dining", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Private Beach", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Concierge", "value": true }
+        ],
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        },
+        "petsAllowed": false,
+        "checkinTime": "15:00",
+        "checkoutTime": "12:00",
+        "numberOfRooms": 200
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

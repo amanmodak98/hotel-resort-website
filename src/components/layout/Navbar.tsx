@@ -1,163 +1,163 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
+interface NavLink {
+  name: string
+  path: string
+}
+
+const navLinks: NavLink[] = [
+  { name: 'Rooms', path: '/rooms' },
+  { name: 'Dining', path: '/dining' },
+  { name: 'Spa', path: '/spa' },
+  { name: 'Experiences', path: '/experiences' },
+]
+
+const rightLinks: NavLink[] = [
+  { name: 'Contact', path: '/contact' },
+]
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
+  const navRef = useRef<HTMLElement>(null)
 
+  // Scroll-based blur backdrop
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => setScrolled(window.scrollY > 24)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   // Close mobile menu on route change
   useEffect(() => {
-    setMenuOpen(false)
+    setMobileOpen(false)
   }, [location.pathname])
 
-  // Prevent body scroll when mobile menu is open
+  // Prevent body scroll when mobile menu open
   useEffect(() => {
-    if (menuOpen) {
+    if (mobileOpen) {
       document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = ''
     }
     return () => {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = ''
     }
-  }, [menuOpen])
+  }, [mobileOpen])
 
-  const navLinks = [
-    { name: 'Rooms', path: '/rooms' },
-    { name: 'Amenities', path: '/amenities' },
-    { name: 'Gallery', path: '/gallery' },
-  ]
-
-  const rightLinks = [
-    { name: 'Dining', path: '/dining' },
-  ]
+  // Close mobile menu with Escape
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   const isActive = (path: string) => location.pathname === path
 
+  const renderLink = (link: NavLink) => {
+    const active = isActive(link.path)
+    return (
+      <Link
+        key={link.path}
+        to={link.path}
+        aria-current={active ? 'page' : undefined}
+        className={`group relative inline-flex items-center px-2 py-1.5 text-[13px] uppercase tracking-[0.18em] font-light transition-colors duration-300 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-900 ${
+          active ? 'text-accent-400' : 'text-ivory-200/85 hover:text-accent-400'
+        }`}
+      >
+        <span>{link.name}</span>
+        <span
+          aria-hidden="true"
+          className={`pointer-events-none absolute -bottom-0.5 left-2 right-2 h-px origin-left transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            active ? 'scale-x-100 bg-accent-400' : 'scale-x-0 bg-accent-400 group-hover:scale-x-100'
+          }`}
+        />
+      </Link>
+    )
+  }
+
   return (
     <>
-      {/* Skip to main content link for accessibility */}
       <a href="#main-content" className="skip-to-content">
         Skip to main content
       </a>
 
       <motion.nav
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-fixed transition-all duration-300 ${
-          scrolled ? 'bg-navy-900/95 backdrop-blur-luxury shadow-lg' : 'bg-transparent'
+        ref={navRef}
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 left-0 right-0 z-[1030] transition-all duration-500 ${
+          scrolled
+            ? 'bg-primary-900/85 shadow-[0_2px_24px_rgba(0,0,0,0.25)] backdrop-blur-luxury border-b border-accent-400/10'
+            : 'bg-transparent border-b border-transparent'
         }`}
         role="navigation"
         aria-label="Main navigation"
       >
         <div className="container-luxury">
           <div className="flex items-center justify-between h-20">
-            {/* Left Navigation - Desktop */}
-            <div className="hidden lg:flex items-center space-x-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`text-sm uppercase tracking-wider font-light transition-colors duration-300 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 rounded-sm px-2 py-1 ${
-                    isActive(link.path)
-                      ? 'text-gold-400'
-                      : 'text-ivory-200/80 hover:text-gold-400'
-                  }`}
-                  aria-current={isActive(link.path) ? 'page' : undefined}
-                >
-                  {link.name}
-                  {isActive(link.path) && (
-                    <motion.span
-                      layoutId="navbar-indicator"
-                      className="absolute -bottom-1 left-0 right-0 h-[1px] bg-gold-400"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Link>
-              ))}
+            {/* Left Navigation — Desktop */}
+            <div className="hidden lg:flex items-center gap-7">
+              {navLinks.slice(0, 2).map(renderLink)}
             </div>
 
             {/* Center Logo */}
             <Link
               to="/"
-              className="flex items-center space-x-3 flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 rounded-sm px-2 py-1"
-              aria-label="The Grand Meridian - Home"
+              className="flex items-center gap-3 flex-shrink-0 px-2 py-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-900"
+              aria-label="The Grand Meridian — Home"
             >
-              <div className="w-8 h-[1px] bg-gold-400 hidden sm:block" aria-hidden="true" />
-              <h1 className="text-xl sm:text-2xl font-bold tracking-widest text-gold-400 font-serif">
+              <span aria-hidden="true" className="hidden sm:inline-block w-8 h-px bg-accent-400/70" />
+              <span className="text-lg sm:text-xl font-display font-bold tracking-[0.22em] text-accent-400">
                 THE GRAND MERIDIAN
-              </h1>
-              <div className="w-8 h-[1px] bg-gold-400 hidden sm:block" aria-hidden="true" />
+              </span>
+              <span aria-hidden="true" className="hidden sm:inline-block w-8 h-px bg-accent-400/70" />
             </Link>
 
-            {/* Right Navigation - Desktop */}
-            <div className="hidden lg:flex items-center space-x-8">
-              {rightLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`text-sm uppercase tracking-wider font-light transition-colors duration-300 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 rounded-sm px-2 py-1 ${
-                    isActive(link.path)
-                      ? 'text-gold-400'
-                      : 'text-ivory-200/80 hover:text-gold-400'
-                  }`}
-                  aria-current={isActive(link.path) ? 'page' : undefined}
-                >
-                  {link.name}
-                  {isActive(link.path) && (
-                    <motion.span
-                      layoutId="navbar-indicator-right"
-                      className="absolute -bottom-1 left-0 right-0 h-[1px] bg-gold-400"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Link>
-              ))}
+            {/* Right Navigation — Desktop */}
+            <div className="hidden lg:flex items-center gap-7">
+              {navLinks.slice(2).map(renderLink)}
+              {rightLinks.map(renderLink)}
               <Link
-                to="/book"
-                className="bg-gold-400 text-navy-900 px-6 py-2.5 text-sm uppercase tracking-wider font-semibold hover:bg-gold-300 active:bg-gold-500 transition-all duration-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 shadow-sm hover:shadow-gold-sm"
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 bg-accent-400 text-primary-900 px-6 py-2.5 text-[12px] uppercase tracking-[0.2em] font-semibold rounded-md hover:bg-accent-300 active:bg-accent-500 transition-all duration-300 shadow-sm hover:shadow-gold-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-900"
               >
-                Book Now
+                Reserve
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Toggle */}
             <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden relative w-11 h-11 flex flex-col items-center justify-center space-y-1.5 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 rounded-lg"
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={menuOpen}
+              onClick={() => setMobileOpen((v) => !v)}
+              className="lg:hidden relative w-11 h-11 flex flex-col items-center justify-center gap-1.5 z-50 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-900"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
             >
               <span
-                className={`w-6 h-0.5 bg-gold-400 transition-all duration-300 ${
-                  menuOpen ? 'rotate-45 translate-y-2' : ''
-                }`}
                 aria-hidden="true"
+                className={`w-6 h-0.5 bg-accent-400 transition-all duration-300 ${
+                  mobileOpen ? 'translate-y-[5px] rotate-45' : ''
+                }`}
               />
               <span
-                className={`w-6 h-0.5 bg-gold-400 transition-all duration-300 ${
-                  menuOpen ? 'opacity-0' : ''
-                }`}
                 aria-hidden="true"
+                className={`w-6 h-0.5 bg-accent-400 transition-all duration-300 ${
+                  mobileOpen ? 'opacity-0' : ''
+                }`}
               />
               <span
-                className={`w-6 h-0.5 bg-gold-400 transition-all duration-300 ${
-                  menuOpen ? '-rotate-45 -translate-y-2' : ''
-                }`}
                 aria-hidden="true"
+                className={`w-6 h-0.5 bg-accent-400 transition-all duration-300 ${
+                  mobileOpen ? '-translate-y-[5px] -rotate-45' : ''
+                }`}
               />
             </button>
           </div>
@@ -165,37 +165,40 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <AnimatePresence>
-          {menuOpen && (
+          {mobileOpen && (
             <motion.div
               id="mobile-menu"
+              role="region"
+              aria-label="Mobile navigation"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden overflow-hidden bg-navy-900/98 backdrop-blur-luxury border-t border-gold-400/10"
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:hidden overflow-hidden bg-primary-900/95 backdrop-blur-luxury border-t border-accent-400/15"
             >
-              <div className="px-6 py-8 space-y-6">
-                {[...navLinks, ...rightLinks].map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    onClick={() => setMenuOpen(false)}
-                    className={`block text-base uppercase tracking-wider font-light transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 rounded-sm px-2 py-1 ${
-                      isActive(link.path)
-                        ? 'text-gold-400'
-                        : 'text-ivory-200/80 hover:text-gold-400'
-                    }`}
-                    aria-current={isActive(link.path) ? 'page' : undefined}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
+              <div className="px-6 py-8 space-y-1">
+                {[...navLinks, ...rightLinks].map((link) => {
+                  const active = isActive(link.path)
+                  return (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      onClick={() => setMobileOpen(false)}
+                      aria-current={active ? 'page' : undefined}
+                      className={`block px-2 py-3 text-base uppercase tracking-[0.18em] font-light transition-colors duration-300 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-900 ${
+                        active ? 'text-accent-400' : 'text-ivory-200/85 hover:text-accent-400'
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  )
+                })}
                 <Link
-                  to="/book"
-                  onClick={() => setMenuOpen(false)}
-                  className="block bg-gold-400 text-navy-900 px-6 py-3 text-center text-sm uppercase tracking-wider font-semibold hover:bg-gold-300 active:bg-gold-500 transition-all duration-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 shadow-sm"
+                  to="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="mt-4 block bg-accent-400 text-primary-900 px-6 py-3.5 text-center text-sm uppercase tracking-[0.2em] font-semibold rounded-md hover:bg-accent-300 active:bg-accent-500 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-900"
                 >
-                  Book Now
+                  Reserve Your Stay
                 </Link>
               </div>
             </motion.div>
